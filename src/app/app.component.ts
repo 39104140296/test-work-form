@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, AbstractControl, Validators, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { decimalPlacesValidator } from './validators/decimal-places.validator';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,10 @@ export class AppComponent {
     name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    workingExperience: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*\\.?[0-9]+$")])
+    workingExperience: new FormControl('', [
+      Validators.required,
+      decimalPlacesValidator(1)
+    ])
   });
 
   onSubmit() {

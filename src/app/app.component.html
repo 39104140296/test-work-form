@@ -28,8 +28,11 @@
     <div>
       <label for="workingExperience">Working Experience (months):</label>
       <input type="text" id="workingExperience" formControlName="workingExperience">
-      <div *ngIf="userForm.get('workingExperience')?.invalid && userForm.get('workingExperience')?.touched">
-        Please enter a valid number (working experience in months).
+      <div *ngIf="userForm.get('workingExperience')?.errors?.['numberRequired'] && userForm.get('workingExperience')?.touched">
+        Please enter a valid number.
+      </div>
+      <div *ngIf="userForm.get('workingExperience')?.errors?.['maxDecimalPlaces'] && userForm.get('workingExperience')?.touched">
+        Only 1 decimal place is allowed.
       </div>
     </div>
     <button type="button" (click)="resetForm()">Reset</button>
