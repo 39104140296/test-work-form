@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, AbstractControl, Validators, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { decimalPlacesValidator } from './validators/decimal-places.validator';
+import { MessageComponent } from './message/message.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     ReactiveFormsModule, 
-    NgIf
+    NgIf,
+    MessageComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'My Angular Form';
+  title = 'Simple Form';
 
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -26,11 +28,23 @@ export class AppComponent {
     ])
   });
 
+  formStatusMessage = '';
+  messageType: 'info' | 'error' | 'success' = 'info';
+
   onSubmit() {
-    console.log(this.userForm.value);
+    if (this.userForm.valid) {
+      console.log(this.userForm.value);
+      this.formStatusMessage = 'Form submitted successfully!';
+      this.messageType = 'success';
+    } else {
+      this.formStatusMessage = 'Please check the form for errors.';
+      this.messageType = 'error';
+    }
   }
 
   resetForm() {
     this.userForm.reset();
+    this.formStatusMessage = 'Form has been cleared.';
+    this.messageType = 'info';
   }
 }

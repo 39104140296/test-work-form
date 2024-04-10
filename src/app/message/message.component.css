@@ -1,0 +1,21 @@
+.info {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .error {
+    background-color: #e53935;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .success {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
