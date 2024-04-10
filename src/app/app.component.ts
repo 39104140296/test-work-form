@@ -31,6 +31,11 @@ export class AppComponent {
   formStatusMessage = '';
   messageType: 'info' | 'error' | 'success' = 'info';
 
+  nameTouched = false;
+  surnameTouched = false;
+  emailTouched = false;
+  workingExperienceTouched = false;
+
   onSubmit() {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
@@ -46,5 +51,9 @@ export class AppComponent {
     this.userForm.reset();
     this.formStatusMessage = 'Form has been cleared.';
     this.messageType = 'info';
+    this.nameTouched = false;
+    this.surnameTouched = false;
+    this.emailTouched = false;
+    this.workingExperienceTouched = false;
   }
 }
