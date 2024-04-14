@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { decimalPlacesValidator } from './validators/decimal-places.validator';
+import { lettersAndSpacesValidator } from './validators/letters-and-spaces.validator';
 import { MessageComponent } from './message/message.component';
 
 @Component({
@@ -17,8 +18,8 @@ import { MessageComponent } from './message/message.component';
 })
 export class AppComponent {
   userForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\u00C0-\u017F\s]+$/)]),
-    surname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\u00C0-\u017F\s]+$/)]),
+    name: new FormControl('', [Validators.required, lettersAndSpacesValidator()]),
+    surname: new FormControl('', [Validators.required, lettersAndSpacesValidator()]),
     email: new FormControl('', [Validators.required, Validators.email]),
     workingExperience: new FormControl('', [
       Validators.required,
@@ -28,11 +29,6 @@ export class AppComponent {
 
   formStatusMessage = '';
   messageType: 'info' | 'error' | 'success' = 'info';
-
-  nameTouched = false;
-  surnameTouched = false;
-  emailTouched = false;
-  workingExperienceTouched = false;
 
   onSubmit() {
     if (this.userForm.valid) {
@@ -48,9 +44,5 @@ export class AppComponent {
     this.userForm.reset();
     this.formStatusMessage = 'Form has been cleared.';
     this.messageType = 'info';
-    this.nameTouched = false;
-    this.surnameTouched = false;
-    this.emailTouched = false;
-    this.workingExperienceTouched = false;
   }
 }
