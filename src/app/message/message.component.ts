@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { NgStyle, NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-message',
@@ -8,18 +9,11 @@ import { NgStyle, NgClass } from '@angular/common';
   imports: [NgClass, NgStyle],
   standalone: true
 })
-export class MessageComponent implements OnChanges {
+export class MessageComponent {
   @Input() text: string = '';
   @Input() type: 'info' | 'error' | 'success' = 'info';
-  style: Record<string, string>;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['type']) {
-      this.style = this.getStyle();
-    }
-  }
-
-  getStyle(): Record<string, string> {
+  getStyle() {
     switch (this.type) {
       case 'success':
         return { 'background-color': '#4caf50', 'color': 'white' };
