@@ -1,44 +1,55 @@
 <div style="text-align:center">
-  <h1>{{ title }}</h1>
-  <app-message *ngIf="formStatusMessage" [text]="formStatusMessage" [type]="messageType"></app-message>
+  <app-message [text]="formStatusMessage" [type]="messageType" [class.visible]="formStatusMessage"></app-message>
+
 
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div>
+    <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" formControlName="name">
-      <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
-        Name is required.
-      </div>
     </div>
-    <div>
+    <div class="error-text" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.errors?.['required']">
+      Name is required.
+    </div>
+    <div class="error-text" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.errors?.['pattern'] && !userForm.get('name')?.errors?.['required']">
+      Only letters and spaces are allowed in names.
+    </div>
+    <div class="form-group">
       <label for="surname">Surname:</label>
       <input type="text" id="surname" formControlName="surname">
-      <div *ngIf="userForm.get('surname')?.touched && userForm.get('surname')?.invalid">
-        Surname is required.
-      </div>
     </div>
-    <div>
+    <div class="error-text" *ngIf="userForm.get('surname')?.touched && userForm.get('surname')?.errors?.['required']">
+      Surname is required.
+    </div>
+    <div class="error-text" *ngIf="userForm.get('surname')?.touched && userForm.get('surname')?.errors?.['pattern'] && !userForm.get('surname')?.errors?.['required']">
+      Only letters and spaces are allowed in surnames.
+    </div>
+    <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" id="email" formControlName="email">
-      <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['email']">
-        Please enter a valid email address.
-      </div>
-      <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['required']">
-        Email is required.
-      </div>
     </div>
-    <div>
+    <div class="error-text" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['email']">
+      Please enter a valid email address.
+    </div>
+    <div class="error-text" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['required']">
+      Email is required.
+    </div>
+    <div class="form-group">
       <label for="workingExperience">Working Experience (months):</label>
       <input type="text" id="workingExperience" formControlName="workingExperience">
-      <div *ngIf="userForm.get('workingExperience')?.touched && userForm.get('workingExperience')?.errors?.['numberRequired']">
-        Please enter a valid number.
-      </div>
-      <div *ngIf="userForm.get('workingExperience')?.touched && userForm.get('workingExperience')?.errors?.['maxDecimalPlaces']">
-        Only 1 decimal place is allowed.
-      </div>
     </div>
+    <div class="error-text" *ngIf="userForm.get('workingExperience')?.touched && userForm.get('workingExperience')?.errors?.['required']">
+      Working Experience is required.
+    </div>
+    <div class="error-text" *ngIf="userForm.get('workingExperience')?.touched && userForm.get('workingExperience')?.errors?.['numberRequired']">
+      Please enter a valid number.
+    </div>
+    <div class="error-text" *ngIf="userForm.get('workingExperience')?.touched && userForm.get('workingExperience')?.errors?.['maxDecimalPlaces']">
+      Only 1 decimal place is allowed.
+    </div>
+    <div class="buttons">
     <button type="submit">Submit</button>
     <button type="button" (click)="resetForm()">Reset</button>
+    </div>
   </form>
 </div>
 

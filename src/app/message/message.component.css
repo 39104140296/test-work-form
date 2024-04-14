@@ -1,21 +1,38 @@
+.message-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 500px;
+  height: 32px;
+  border-radius: 4px;
+  opacity: 0; 
+  transition: background-color 0.5s ease-out, color 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.message-box.visible {
+  opacity: 1; 
+}
+
+.info, .error, .success {
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+}
+
 .info {
     background-color: #2196f3;
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-  }
+    transition: background-color 0.5s ease-out;
+}
   
-  .error {
+.error {
     background-color: #e53935;
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-  }
+    transition: background-color 0.5s ease-out;
+}
   
-  .success {
+.success {
     background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-  }
+    transition: background-color 0.5s ease-out;
+}
+
   

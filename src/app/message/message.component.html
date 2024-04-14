@@ -1,5 +1,7 @@
-<div [ngStyle]="getStyle()">
-    {{ text }}
-  </div>
+<div [ngClass]="{'message-box': true, 'visible': text}" [ngStyle]="getStyle()">
+  {{ text }}
+</div>
+
+
   
   

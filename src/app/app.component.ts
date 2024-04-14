@@ -16,11 +16,9 @@ import { MessageComponent } from './message/message.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Simple Form';
-
   userForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    surname: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\u00C0-\u017F\s]+$/)]),
+    surname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\u00C0-\u017F\s]+$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     workingExperience: new FormControl('', [
       Validators.required,
@@ -38,7 +36,6 @@ export class AppComponent {
 
   onSubmit() {
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
       this.formStatusMessage = 'Form submitted successfully!';
       this.messageType = 'success';
     } else {

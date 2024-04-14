@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css'],
-  imports: [NgStyle],
+  imports: [NgClass, NgStyle],
   standalone: true
 })
 export class MessageComponent {
